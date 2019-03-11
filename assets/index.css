@@ -1,0 +1,318 @@
+:root {
+    --red: #880000;
+    --lime: #96d700;
+    --footer: #a7192f;
+    --to-go: #264408;
+    --game: #aac56c;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#header {
+    display: block;
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 300px;
+}
+#logo:before, #logo:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    width:0;
+    height:0;
+}
+@media all and (max-width: 760px) {
+    #logo:before {
+        left: 0;
+        border-color: transparent transparent transparent #800;
+        border-width: 65px 50px;
+        border-style: solid;
+    }
+    #logo:after {
+        left: -120px;
+        border-color: #800 transparent transparent transparent;
+        border-width: 65px 170px;
+        border-style: solid;
+    }
+    #logo img {
+        width: 80px;
+    }
+    #banner {
+        padding-top: 20px;
+    }
+}
+@media all and (min-width: 760px) {
+    #logo:before {
+        left: 0;
+        border-color: transparent transparent transparent #800;
+        border-width: 130px 100px;
+        border-style: solid;
+    }
+    #logo:after {
+        left: -150px;
+        border-color: #800 transparent transparent transparent;
+        border-width: 130px 250px;
+        border-style: solid;
+    }
+    #logo img {
+        width: 150px;
+    }
+    #banner {
+        padding-top: 80px;
+    }
+    #game-tools {
+        margin-left: 4%;
+    }
+}
+#logo img {
+    position: relative;
+    z-index: 2;
+}
+#banner img {
+    width: 100%;
+}
+
+#navbar {
+    position: fixed;
+    top: 10px;
+    right: 0;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+    list-style: none;
+    text-transform: uppercase;
+    font-size: .8em;
+    background: #fff;
+    user-select: none;
+}
+#navbar li {
+    display: block;
+}
+#navbar li:not(:last-child) {
+    border-right: 1px solid #aaa;
+}
+#navbar li.active {
+    font-weight: bold;
+}
+#navbar li a {
+    padding: 10px;
+    color:black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+.layout-left-text {
+    flex-flow: column nowrap;
+}
+
+.block {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    justify-content: stretch;
+}
+.pull-right {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.title {
+    flex: 1 0 100%;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+#welcome .layout-left-text {
+    flex: 1 1 60%;
+}
+#welcome .layout-right-counter {
+    flex: 1 1 17%;
+}
+#welcome > div {
+    padding: 10px;
+}
+#day-counter {
+    background: var(--lime);
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    height: 100%;
+}
+#day-counter p {
+    color: var(--to-go);
+    margin: 0;
+}
+#day-counter .day-count {
+    font-size: 112px;
+    color: #fff;
+    margin: .33em 0 .2em;
+    display: block;
+}
+#day-counter .p-em {
+    text-transform: uppercase;
+    font-size: 2em;
+}
+
+#game {
+    perspective: 200vh;
+    user-select: none;
+}
+#game-board {
+    --margin: 10px;
+    flex: 1 1 auto;
+    max-width: calc((var(--size) * 4) + 8 * var(--margin));
+    height: calc((var(--size) * 4) + 8 * var(--margin));
+    background: var(--game);
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#game-board .game-card {
+    position: initial;
+    flex: 0 0 var(--size);
+    width: var(--size);
+    height: var(--size);
+    margin: var(--margin);
+    background: url('images/skill-cards/cover-flip.png') no-repeat center;
+    background-size: contain;
+}
+#game-board .game-card:not(.revealed) {
+    cursor: pointer;
+    transform: rotateY(180deg);
+}
+@media all and (max-width: 460px) {
+    #game-board {
+        --size: 60px;
+        --margin: 5px;
+    }
+}
+@media all and (max-width: 700px) {
+    #game-board {
+        --size: 70px;
+        --margin: 12px;
+    }
+}
+@media all and (min-width: 700px) {
+    #game-board {
+        --size: 100px;
+    }
+}
+@media all and (min-width: 1000px) {
+    #game-board {
+        --size: 170px;
+    }
+}
+@media all and (max-width: 630px) {
+    #game-tools {
+        flex-basis: 100% !important;
+    }
+}
+#game-tools {
+    font-size: 1.5em;
+    flex: 1 1 100px;
+    background: var(--game);
+    padding: 10px;
+    text-align: center;
+}
+#game-counter {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: .5em 0;
+}
+#new-game-button {
+    color: white;
+    background: rgba(0,0,0,.4);
+    padding: 13px 20px;
+    font-size: 1em;
+    margin-top: 20px;
+    cursor:pointer;
+    outline: 0;
+    border: 3px solid transparent;
+    box-sizing: border-box;
+    transition: transform .1s linear, border-color .3s linear;
+}
+#new-game-button:focus {
+    border-color: rgba(0,0,0,.5);
+}
+#new-game-button:active {
+    transform: scale(0.95);
+}
+
+@media all and (max-width: 500px) {
+    #sponsors div {
+        flex-basis: 100%;
+    }
+}
+@media all and (min-width: 500px) {
+    #main-sponsors {
+        margin-right: 3%;
+    }
+}
+#sponsors div {
+    color: #fff;
+    padding: 10px;
+}
+#sponsors h3 {
+    margin: .6em 0 1em;
+    padding: 0 10px;
+}
+#main-sponsors {
+    background: var(--red);
+    flex: 1 1 30%;
+}
+#main-sponsor {
+    text-align: center;
+}
+#skill-sponsors {
+    flex: 1 1 50%;
+    display: flex;
+    flex-flow: row  wrap;
+    background: var(--game);
+}
+#skill-sponsors div:nth-of-type(odd) {
+    flex: 1 1 30%;
+}
+#skill-sponsors div:nth-of-type(even) {
+    flex: 1 1 60%;
+}
+
+#footer {
+    background: var(--footer);
+    color: #fdd;
+    line-height: 1.5em;
+}
+#footer .underline {
+    display: block;
+    border-bottom: 1px solid rgba(255, 200, 200, .6);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    min-width: 400px;
+    user-select: none;
+}
+#contact {
+    padding: 30px 20px;
+}
